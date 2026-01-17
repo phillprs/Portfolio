@@ -1,182 +1,39 @@
-/* Reset & Base Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+const carousel = document.querySelector('.carousel');
+const images = document.querySelectorAll('.carousel img');
+const leftArrow = document.querySelector('.arrow.left');
+const rightArrow = document.querySelector('.arrow.right');
+let currentIndex = 0;
+
+function updateCarousel() {
+  const offset = -currentIndex * 100;
+  carousel.style.transform = `translateX(${offset}%)`;
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: #121212;
-  color: #e0e0e0;
-  line-height: 1.6;
-}
+leftArrow.addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  updateCarousel();
+});
 
-/* Header / Profile */
-header {
-  text-align: center;
-  padding: 60px 20px;
-}
+rightArrow.addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % images.length;
+  updateCarousel();
+});
 
-.profile {
-  display: inline-block;
-  text-align: center;
-}
-
-.profile-pic {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid #4a90e2;
-  transition: transform 0.3s ease;
-  background-color: #2a2a2a;
-}
-
-.profile-pic:hover {
-  transform: scale(1.05);
-}
-
-header h1 {
-  font-weight: 700;
-  font-size: 32px;
-  margin-top: 20px;
-}
-
-header h2 {
-  font-weight: 600;
-  font-size: 20px;
-  margin-top: 5px;
-  color: #999;
-}
-
-/* Carousel Container */
-.carousel-container {
-  position: relative;
-  max-width: 900px;
-  margin: 50px auto;
-  padding: 0 80px;
-}
-
-/* Fixed carousel box */
-.carousel-box {
-  width: 100%;
-  height: 500px;
-  overflow: hidden;
-  border-radius: 16px;
-  background-color: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(8px);
-  position: relative;
-}
-
-/* Carousel sliding images */
-.carousel {
-  display: flex;
-  height: 100%;
-  transition: transform 0.6s ease;
-}
-
-.carousel img {
-  flex: 0 0 100%;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  background-color: #1a1a1a;
-}
-
-/* Arrows */
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 40px;
-  color: #e0e0e0;
-  background: rgba(0, 0, 0, 0.5);
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.arrow:hover {
-  background: rgba(74, 144, 226, 0.8);
-  transform: translateY(-50%) scale(1.1);
-}
-
-.arrow.left {
-  left: 10px;
-}
-
-.arrow.right {
-  right: 10px;
-}
-
-/* Description */
-.description {
-  max-width: 800px;
-  margin: 30px auto;
-  padding: 0 20px;
-  text-align: center;
-  font-size: 16px;
-  color: #ccc;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 30px 20px;
-  font-size: 14px;
-  color: #888;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .carousel-container {
-    padding: 0 60px;
-  }
+// Profile animation with GSAP
+window.addEventListener("DOMContentLoaded", () => {
+  updateCarousel();
   
-  .carousel-box {
-    height: 350px;
-  }
+  gsap.from(".profile-pic", { 
+    duration: 1, 
+    scale: 0, 
+    ease: "back.out(1.7)" 
+  });
   
-  .arrow {
-    width: 50px;
-    height: 50px;
-    font-size: 32px;
-  }
-}
-
-@media (max-width: 480px) {
-  .carousel-container {
-    padding: 0 50px;
-  }
-  
-  .carousel-box {
-    height: 250px;
-  }
-  
-  .profile-pic {
-    width: 120px;
-    height: 120px;
-  }
-  
-  header h1 {
-    font-size: 24px;
-  }
-  
-  header h2 {
-    font-size: 16px;
-  }
-  
-  .arrow {
-    width: 45px;
-    height: 45px;
-    font-size: 28px;
-  }
-}
+  gsap.from("header h1, header h2", {
+    duration: 1,
+    y: 20,
+    opacity: 0,
+    stagger: 0.2,
+    ease: "power2.out"
+  });
+});
