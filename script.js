@@ -1,3 +1,4 @@
+// Wait for DOM to fully load before running any code
 window.addEventListener("DOMContentLoaded", () => {
   const carousel = document.querySelector('.carousel');
   const images = document.querySelectorAll('.carousel img');
@@ -10,6 +11,7 @@ window.addEventListener("DOMContentLoaded", () => {
     carousel.style.transform = `translateX(${offset}%)`;
   }
 
+  // Arrow click events
   leftArrow.addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + images.length) % images.length;
     updateCarousel();
