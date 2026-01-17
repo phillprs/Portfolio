@@ -1,43 +1,57 @@
-const carousel = document.querySelector('.carousel');
-const images = document.querySelectorAll('.carousel img');
-const leftArrow = document.querySelector('.arrow.left');
-const rightArrow = document.querySelector('.arrow.right');
+const carousel = document.querySelector(".carousel")
+const indexLabel = document.querySelector(".carousel-index")
+const leftArrow = document.querySelector(".arrow.left")
+const rightArrow = document.querySelector(".arrow.right")
 
-let currentIndex = 0;
+const totalBuilds = 14
+let currentIndex = 0
+let startX = 0
 
-function updateCarousel() {
-  const offset = -currentIndex * 100; // shift by percentage
-  carousel.style.transform = `translateX(${offset}%)`;
+for (let i = 1; i <= totalBuilds; i++) {
+  const img = document.createElement("img")
+  img.src = `assets/build${i}.png`
+  img.alt = `Build ${i}`
+  if (i === 1) img.classList.add("active")
+  carousel.appendChild(img)
 }
 
-// Arrow click events
-leftArrow.addEventListener('click', () => {
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  updateCarousel();
-});
+const images = carousel.querySelectorAll("img")
 
-rightArrow.addEventListener('click', () => {
-  currentIndex = (currentIndex + 1) % images.length;
-  updateCarousel();
-});
+function updateCarousel() {
+  images.forEach((img, i) => img.classList.toggle("active", i === currentIndex))
+  indexLabel.textContent = `${currentIndex + 1} / ${images.length}`
+}
 
-// Optional auto-slide
-// setInterval(() => {
-//   currentIndex = (currentIndex + 1) % images.length;
-//   updateCarousel();
-// }, 5000);
+leftArrow.addEventListener("click", () => {
+  currentIndex = (currentIndex - 1 + images.length) % images.length
+  updateCarousel()
+})
 
-// Initial display
-updateCarousel();
+rightArrow.addEventListener("click", () => {
+  currentIndex = (currentIndex + 1) % images.length
+  updateCarousel()
+})
 
-// Profile animation
+carousel.addEventListener("touchstart", e => startX = e.touches[0].clientX)
+carousel.addEventListener("touchend", e => {
+  const diff = startX - e.changedTouches[0].clientX
+  if (Math.abs(diff) > 50) {
+    currentIndex = diff > 0
+      ? (currentIndex + 1) % images.length
+      : (currentIndex - 1 + images.length) % images.length
+    updateCarousel()
+  }
+})
+
+updateCarousel()
+
 window.addEventListener("DOMContentLoaded", () => {
-  gsap.from(".profile-pic", { duration: 1, scale: 0, ease: "back.out(1.7)" });
+  gsap.from(".profile-pic", { duration: 1, scale: 0, ease: "back.out(1.7)" })
   gsap.from("header h1, header h2", {
     duration: 1,
     y: 20,
     opacity: 0,
     stagger: 0.2,
     ease: "power2.out"
-  });
-});
+  })
+})
