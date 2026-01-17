@@ -1,28 +1,29 @@
-const carousel = document.querySelector('.carousel');
-const images = document.querySelectorAll('.carousel img');
-const leftArrow = document.querySelector('.arrow.left');
-const rightArrow = document.querySelector('.arrow.right');
-let currentIndex = 0;
-
-function updateCarousel() {
-  const offset = -currentIndex * 100;
-  carousel.style.transform = `translateX(${offset}%)`;
-}
-
-leftArrow.addEventListener('click', () => {
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  updateCarousel();
-});
-
-rightArrow.addEventListener('click', () => {
-  currentIndex = (currentIndex + 1) % images.length;
-  updateCarousel();
-});
-
-updateCarousel();
-
-// Profile animation with GSAP
 window.addEventListener("DOMContentLoaded", () => {
+  const carousel = document.querySelector('.carousel');
+  const images = document.querySelectorAll('.carousel img');
+  const leftArrow = document.querySelector('.arrow.left');
+  const rightArrow = document.querySelector('.arrow.right');
+  let currentIndex = 0;
+
+  function updateCarousel() {
+    const offset = -currentIndex * 100;
+    carousel.style.transform = `translateX(${offset}%)`;
+  }
+
+  leftArrow.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateCarousel();
+  });
+
+  rightArrow.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateCarousel();
+  });
+
+  // Initial display
+  updateCarousel();
+
+  // Profile animation with GSAP
   gsap.from(".profile-pic", { 
     duration: 1, 
     scale: 0, 
