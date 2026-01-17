@@ -1,167 +1,249 @@
-/* Reset & Base Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Phil – Roblox Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    /* Reset & Base Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+    /* Header / Profile */
+    header {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .profile {
+      display: inline-block;
+      text-align: center;
+    }
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 3px solid #4a90e2;
+      transition: transform 0.3s ease;
+      background-color: #2a2a2a;
+    }
+    .profile-pic:hover {
+      transform: scale(1.05);
+    }
+    header h1 {
+      font-weight: 700;
+      font-size: 32px;
+      margin-top: 20px;
+    }
+    header h2 {
+      font-weight: 600;
+      font-size: 20px;
+      margin-top: 5px;
+      color: #999;
+    }
+    /* Carousel Container */
+    .carousel-container {
+      position: relative;
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 0 80px;
+    }
+    /* Fixed carousel box */
+    .carousel-box {
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+      border-radius: 16px;
+      background-color: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(8px);
+      position: relative;
+    }
+    /* Carousel sliding images */
+    .carousel {
+      display: flex;
+      height: 100%;
+      transition: transform 0.6s ease;
+    }
+    .carousel img {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      background-color: #1a1a1a;
+    }
+    /* Arrows */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 40px;
+      color: #e0e0e0;
+      background: rgba(0,0,0,0.5);
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .arrow:hover {
+      background: rgba(74, 144, 226, 0.8);
+      transform: translateY(-50%) scale(1.1);
+    }
+    .arrow.left {
+      left: 10px;
+    }
+    .arrow.right {
+      right: 10px;
+    }
+    /* Description */
+    .description {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 0 20px;
+      text-align: center;
+      font-size: 16px;
+      color: #ccc;
+    }
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 14px;
+      color: #888;
+    }
+    /* Responsive */
+    @media (max-width: 768px) {
+      .carousel-container {
+        padding: 0 60px;
+      }
+      .carousel-box {
+        height: 350px;
+      }
+      .arrow {
+        width: 50px;
+        height: 50px;
+        font-size: 32px;
+      }
+    }
+    @media (max-width: 480px) {
+      .carousel-container {
+        padding: 0 50px;
+      }
+      .carousel-box {
+        height: 250px;
+      }
+      .profile-pic {
+        width: 120px;
+        height: 120px;
+      }
+      header h1 {
+        font-size: 24px;
+      }
+      header h2 {
+        font-size: 16px;
+      }
+      .arrow {
+        width: 45px;
+        height: 45px;
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="profile">
+      <img src="https://via.placeholder.com/150/4a90e2/ffffff?text=P" alt="Profile Image" class="profile-pic" />
+      <h1>Phil</h1>
+      <h2>Roblox Builder</h2>
+    </div>
+  </header>
+  <main>
+    <section class="carousel-container">
+      <button class="arrow left">&#10094;</button>
+      <div class="carousel-box">
+        <div class="carousel">
+          <img src="https://via.placeholder.com/900x500/1a1a1a/4a90e2?text=Build+1" alt="Build 1" />
+          <img src="https://via.placeholder.com/900x500/1a1a1a/4a90e2?text=Build+2" alt="Build 2" />
+          <img src="https://via.placeholder.com/900x500/1a1a1a/4a90e2?text=Build+3" alt="Build 3" />
+          <img src="https://via.placeholder.com/900x500/1a1a1a/4a90e2?text=Build+4" alt="Build 4" />
+          <img src="https://via.placeholder.com/900x500/1a1a1a/4a90e2?text=Build+5" alt="Build 5" />
+          <img src="https://via.placeholder.com/900x500/1a1a1a/4a90e2?text=Build+6" alt="Build 6" />
+          <img src="https://via.placeholder.com/900x500/1a1a1a/4a90e2?text=Build+7" alt="Build 7" />
+          <img src="https://via.placeholder.com/900x500/1a1a1a/4a90e2?text=Build+8" alt="Build 8" />
+          <img src="https://via.placeholder.com/900x500/1a1a1a/4a90e2?text=Build+9" alt="Build 9" />
+          <img src="https://via.placeholder.com/900x500/1a1a1a/4a90e2?text=Build+10" alt="Build 10" />
+          <img src="https://via.placeholder.com/900x500/1a1a1a/4a90e2?text=Build+11" alt="Build 11" />
+          <img src="https://via.placeholder.com/900x500/1a1a1a/4a90e2?text=Build+12" alt="Build 12" />
+          <img src="https://via.placeholder.com/900x500/1a1a1a/4a90e2?text=Build+13" alt="Build 13" />
+          <img src="https://via.placeholder.com/900x500/1a1a1a/4a90e2?text=Build+14" alt="Build 14" />
+          <img src="https://via.placeholder.com/900x500/1a1a1a/4a90e2?text=Build+15" alt="Build 15" />
+          <img src="https://via.placeholder.com/900x500/1a1a1a/4a90e2?text=Build+16" alt="Build 16" />
+          <img src="https://via.placeholder.com/900x500/1a1a1a/4a90e2?text=Build+17" alt="Build 17" />
+        </div>
+      </div>
+      <button class="arrow right">&#10095;</button>
+    </section>
+    <section class="description">
+      <p>
+        I deliver high-quality Roblox builds on time, specializing in low-poly designs. I prioritize speed and reliability to ensure your projects are completed efficiently and professionally.
+      </p>
+    </section>
+  </main>
+  <footer>
+    <p>© 2026 Phil. All rights reserved.</p>
+  </footer>
 
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: #121212;
-  color: #e0e0e0;
-  line-height: 1.6;
-}
+  <script>
+    const carousel = document.querySelector('.carousel');
+    const images = document.querySelectorAll('.carousel img');
+    const leftArrow = document.querySelector('.arrow.left');
+    const rightArrow = document.querySelector('.arrow.right');
+    let currentIndex = 0;
 
-/* Header / Profile */
-header {
-  text-align: center;
-  padding: 60px 20px;
-}
+    function updateCarousel() {
+      const offset = -currentIndex * 100;
+      carousel.style.transform = `translateX(${offset}%)`;
+    }
 
-.profile {
-  display: inline-block;
-  text-align: center;
-}
+    leftArrow.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateCarousel();
+    });
 
-.profile-pic {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid #4a90e2;
-  transition: transform 0.3s ease;
-}
+    rightArrow.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateCarousel();
+    });
 
-.profile-pic:hover {
-  transform: scale(1.05);
-}
+    updateCarousel();
 
-header h1 {
-  font-weight: 700;
-  font-size: 32px;
-  margin-top: 20px;
-}
-
-header h2 {
-  font-weight: 600;
-  font-size: 20px;
-  margin-top: 5px;
-  color: #999; /* slightly darker than name */
-}
-
-/* Carousel Container */
-.carousel-container {
-  position: relative;
-  max-width: 900px;
-  margin: 50px auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Fixed carousel box */
-.carousel-box {
-  width: 100%;
-  height: 500px; /* fixed height */
-  overflow: hidden;
-  border-radius: 16px;
-  background-color: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(8px);
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Carousel sliding images */
-.carousel {
-  display: flex;
-  height: 100%;
-  transition: transform 0.6s ease; /* smooth slide animation */
-}
-
-.carousel img {
-  flex: 0 0 100%; /* full width of box */
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain; /* fully contained in box */
-  border-radius: 16px;
-}
-
-/* Arrows */
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 40px;
-  color: #e0e0e0;
-  background: rgba(0,0,0,0.3);
-  border: none;
-  border-radius: 50%;
-  padding: 10px 15px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  z-index: 10;
-}
-
-.arrow:hover {
-  background: rgba(0,0,0,0.6);
-}
-
-.arrow.left {
-  left: -60px;
-}
-
-.arrow.right {
-  right: -60px;
-}
-
-/* Description */
-.description {
-  max-width: 800px;
-  margin: 30px auto;
-  text-align: center;
-  font-size: 16px;
-  color: #ccc;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  padding: 30px 20px;
-  font-size: 14px;
-  color: #888;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .carousel-box {
-    height: 350px;
-  }
-  .arrow.left {
-    left: -40px;
-  }
-  .arrow.right {
-    right: -40px;
-  }
-}
-
-@media (max-width: 480px) {
-  .carousel-box {
-    height: 250px;
-  }
-  .profile-pic {
-    width: 120px;
-    height: 120px;
-  }
-  header h1 {
-    font-size: 24px;
-  }
-  header h2 {
-    font-size: 16px;
-  }
-  .arrow {
-    font-size: 30px;
-    padding: 8px 12px;
-  }
-}
+    // Profile animation with GSAP
+    window.addEventListener("DOMContentLoaded", () => {
+      gsap.from(".profile-pic", { duration: 1, scale: 0, ease: "back.out(1.7)" });
+      gsap.from("header h1, header h2", {
+        duration: 1,
+        y: 20,
+        opacity: 0,
+        stagger: 0.2,
+        ease: "power2.out"
+      });
+    });
+  </script>
+</body>
+</html>
